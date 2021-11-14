@@ -395,6 +395,27 @@ Cylindric Projections
 
 .. only:: html
 
+ .. figure:: /projections/cyl/images/thumb/sphx_glr_cyl_oblique_mercator_1_thumb.png
+     :alt: Oblique Mercator
+
+     :ref:`sphx_glr_projections_cyl_cyl_oblique_mercator_1.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /projections/cyl/cyl_oblique_mercator_1
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Oblique configurations of the cylinder give rise to the oblique Mercator projection. It is part...">
+
+.. only:: html
+
  .. figure:: /projections/cyl/images/thumb/sphx_glr_cyl_oblique_mercator_2_thumb.png
      :alt: Oblique Mercator
 
@@ -430,27 +451,6 @@ Cylindric Projections
    :hidden:
 
    /projections/cyl/cyl_oblique_mercator_3
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Oblique configurations of the cylinder give rise to the oblique Mercator projection. It is part...">
-
-.. only:: html
-
- .. figure:: /projections/cyl/images/thumb/sphx_glr_cyl_oblique_mercator_1_thumb.png
-     :alt: Oblique Mercator
-
-     :ref:`sphx_glr_projections_cyl_cyl_oblique_mercator_1.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /projections/cyl/cyl_oblique_mercator_1
 
 .. raw:: html
 

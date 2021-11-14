@@ -85,30 +85,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/first_figure.html">Making your first figure</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="gallery/index.html">Gallery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="external_resources.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics/first_figure.html">Making your first figure</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/frames.html">Frames, ticks, titles, and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gallery/index.html">Gallery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="projections/index.html">Projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/coastlines.html">Coastlines and borders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/regions.html">Setting the region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/plot.html">Plotting data points</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/lines.html">Plotting lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/vectors.html">Plotting vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/date_time_charts.html">Plotting datetime charts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/text.html">Plotting text</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/contour_map.html">Creating a map with contour lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/earth_relief.html">Plotting Earth relief</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/3d_perspective_image.html">Creating a 3D perspective image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/insets.html">Adding an inset to the figure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/subplots.html">Making subplots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/configuration.html">Configuring PyGMT defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_resources.html">External Resources</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference documentation</span></p>
 <ul>
@@ -126,7 +110,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#providing-feedback">Providing Feedback</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#reporting-a-bug">Reporting a Bug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reporting-a-bug">Reporting a Bug</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reporting-upstream-bugs">Reporting upstream bugs</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#submitting-a-feature-request">Submitting a Feature Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#submitting-general-comments-questions">Submitting General Comments/Questions</a></li>
 </ul>
@@ -276,6 +263,29 @@ top of the GitHub repository and click <em>New Issue</em>.</p></li>
 <li><p>After submitting your bug report, try to answer any follow up questions about the bug
 as best as you can.</p></li>
 </ul>
+<section id="reporting-upstream-bugs">
+<h4>Reporting upstream bugs<a class="headerlink" href="#reporting-upstream-bugs" title="Permalink to this headline"></a></h4>
+<p>If you are aware that a bug is caused by an upstream GMT issue rather than a
+PyGMT-specific issue, you can optionally take the following steps to help resolve
+the problem:</p>
+<ul>
+<li><p>Add the line <code class="docutils literal notranslate"><span class="pre">pygmt.config(GMT_VERBOSE='d')</span></code> after your import statements, which
+will report the equivalent GMT commands as one of the debug messages.</p></li>
+<li><p>Either append all messages from running your script to your GitHub issue, or
+filter the messages to include only the GMT-equivalent commands using a command
+such as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python &lt;test&gt;.py 2&gt;&amp;1 | awk -F&#39;: &#39; &#39;$2==&quot;GMT_Call_Command string&quot; {print &quot;gmt&quot;, $3}&#39;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;test&gt;</span></code> is the name of your test script.</p>
+</li>
+<li><p>If the bug is produced when passing an in-memory data object (e.g., a
+pandas.DataFrame or xarray.DataArray) to a PyGMT function, try writing the
+data to a file (e.g., a NetCDF or ASCII txt file) and passing the data file
+to the PyGMT function instead. In the GitHub issue, please share the results
+for both cases along with your code.</p></li>
+</ul>
+</section>
 </section>
 <section id="submitting-a-feature-request">
 <h3>Submitting a Feature Request<a class="headerlink" href="#submitting-a-feature-request" title="Permalink to this headline"></a></h3>
@@ -558,12 +568,9 @@ documentation.</p></li>
 <p>The tutorials (the User Guide in the docs) are also built by sphinx-gallery from the
 <code class="docutils literal notranslate"><span class="pre">.py</span></code> files in the <code class="docutils literal notranslate"><span class="pre">examples/tutorials</span></code> folder of the repository. To add a new tutorial:</p>
 <ul class="simple">
-<li><p>Include a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">examples/tutorials</span></code> folder on the base of the repository.</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">examples/tutorials/advanced</span></code> folder.</p></li>
 <li><p>Write the tutorial in “notebook” style with code mixed with paragraphs explaining what
 is being done. See the other tutorials for the format.</p></li>
-<li><p>Include the tutorial in the table of contents of the documentation (side bar). Do this
-by adding a line to the User Guide <code class="docutils literal notranslate"><span class="pre">toc</span></code> directive in <code class="docutils literal notranslate"><span class="pre">doc/index.rst</span></code>. Notice that the
-file included is the <code class="docutils literal notranslate"><span class="pre">.rst</span></code> generated by sphinx-gallery.</p></li>
 <li><p>Choose the most representative figure as the thumbnail figure by adding a comment line
 <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">sphinx_gallery_thumbnail_number</span> <span class="pre">=</span> <span class="pre">&lt;fig_number&gt;</span></code> to any place (usually at the top)
 in the tutorial. The <em>fig_number</em> starts from 1.</p></li>
@@ -873,9 +880,9 @@ Here’s an example:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2017-2021, The PyGMT Developers.
-      <span class="commit">Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/9e8a7bd8">9e8a7bd8</a></code>.
+      <span class="commit">Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/1b74259a">1b74259a</a></code>.
       </span>
-      <span class="lastupdated">Last updated on Oct 29, 2021.
+      <span class="lastupdated">Last updated on Nov 14, 2021.
       </span></p>
   </div>
 
